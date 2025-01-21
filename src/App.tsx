@@ -8,9 +8,12 @@ import { store } from "./store";
 import { PrimeReactProvider } from "primereact/api";
 import { Routes, Route } from "react-router-dom";
 
-import Home from "./features/home/home";
 import Header from "./components/header/header";
 import Footer from "./components/footer/footer";
+
+//pages
+import Home from "./features/home/home";
+import Coin from "./features/coin/coin";
 
 function App() {
   return (
@@ -19,6 +22,7 @@ function App() {
         <Header></Header>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/coin/:id" element={<Coin />} />
         </Routes>
         <Footer></Footer>
       </PrimeReactProvider>

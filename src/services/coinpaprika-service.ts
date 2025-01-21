@@ -1,12 +1,17 @@
 import { CacheService } from "./cache-service";
 const BASE_URL = "https://api.coinpaprika.com/v1";
+const CHARTS_API = "https://graphsv2.coinpaprika.com";
 
 import { Coin } from "../types/coin";
-import { MarketData } from "../types/market-data";
 import { Ticker } from "../types/ticker";
+import { ChartData } from "../types/chart-data";
 
 // General API request method
-async function apiRequest<T>(endpoint: string, cacheKey?: string): Promise<T> {
+async function apiRequest<T>(
+  endpoint: string,
+  cacheKey?: string,
+  chartsAPI = false
+): Promise<T> {
   if (cacheKey) {
     const cachedData = CacheService.getItem<T>(cacheKey);
     if (cachedData) {
@@ -17,7 +22,9 @@ async function apiRequest<T>(endpoint: string, cacheKey?: string): Promise<T> {
 
   try {
     console.log(`Fetching fresh data from API: ${endpoint}`);
-    const response = await fetch(`${BASE_URL}${endpoint}`);
+    const response = await fetch(
+      `${chartsAPI ? CHARTS_API : BASE_URL}${endpoint}`
+    );
     if (!response.ok) throw new Error(`API request failed: ${response.status}`);
 
     const data: T = await response.json();
@@ -54,9 +61,13 @@ export const getCoinTicker = (coinId: string): Promise<Ticker> => {
  * Fetch market data for a specific coin.
  * @param coinId The coin ID.
  */
-export const getCoinMarketData = (coinId: string): Promise<MarketData> => {
-  return apiRequest<MarketData>(
-    `/tickers/${coinId}`,
-    `coinPaprika_market_${coinId}`
+export const getCoinChart = (
+  coinId: string,
+  period: "1d" | "7d" | "30d" | "1y" = "1y"
+): Promise<ChartData> => {
+  return apiRequest<ChartData>(
+    `/currency/data/${coinId}/${period}/?quote=usd`,
+    `chart_${period}_${coinId}`,
+    true
   );
 };

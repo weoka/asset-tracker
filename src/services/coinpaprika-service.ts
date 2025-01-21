@@ -1,4 +1,4 @@
-import { CacheService } from "./CacheService";
+import { CacheService } from "./cache-service";
 const BASE_URL = "https://api.coinpaprika.com/v1";
 
 import { Coin } from "../types/Coin";

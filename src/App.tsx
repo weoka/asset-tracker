@@ -7,7 +7,7 @@ import { Provider } from "react-redux";
 import { store } from "./store";
 import { PrimeReactProvider } from "primereact/api";
 
-import { Header } from "./components/Header/Header";
+import { Header } from "./components/header/header";
 
 function App() {
   return (

@@ -5,7 +5,7 @@ export interface TokenBalance {
   logo?: string;
   thumbnail?: string;
   decimals?: number;
-  balance?: string | number | null | undefined;
+  balance?: string | number | null | undefined | bigint;
   possible_spam?: string | null;
   verified_collection?: string | null;
   total_supply?: string;

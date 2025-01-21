@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { getTokenBalances } from "../services/moralis-service";
 import { TokenBalance } from "../types/token-balance";
+import { ethers } from "ethers";
 
 export const useBalances = (address: string, chainId: string) => {
   const [balances, setBalances] = useState<TokenBalance[] | null>(null);
@@ -16,10 +17,13 @@ export const useBalances = (address: string, chainId: string) => {
         const balances = await getTokenBalances(address, chainId);
 
         balances.forEach((balance, index) => {
-          balances[index].balance =
-            Number(balances[index].balance) /
-            Math.pow(10, balance.decimals ?? 5);
+          balances[index].balance = ethers.formatUnits(
+            balance.balance as bigint,
+            balance.decimals
+          );
         });
+
+        console.log(balances);
 
         setBalances(balances);
       } catch (err) {

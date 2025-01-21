@@ -24,10 +24,15 @@ const ConnectWallet: React.FC = () => {
         const accounts = await provider.send("eth_requestAccounts", []);
         const network = await provider.getNetwork();
 
+        // Fetch the wallet balance
+        const balanceBigInt = await provider.getBalance(accounts[0]);
+        const balanceFormatted = ethers.formatEther(balanceBigInt);
+
         dispatch(
           setWallet({
             address: accounts[0],
-            chainId: network.chainId.toString(),
+            chainId: Number(network.chainId),
+            balance: balanceFormatted,
           })
         );
       } catch (error) {
@@ -44,7 +49,8 @@ const ConnectWallet: React.FC = () => {
         dispatch(
           setWallet({
             address: address || "",
-            chainId: parseInt(chainId, 16).toString(),
+            chainId: Number(chainId),
+            balance: 0,
           })
         );
       };

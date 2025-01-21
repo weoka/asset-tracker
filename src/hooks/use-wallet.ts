@@ -5,11 +5,11 @@ import { WalletState } from "../types/wallet-state";
 
 export const useWallet = () => {
   const dispatch = useDispatch<AppDispatch>();
-  const { address, chainId } = useSelector(
+  const { address, chainId, balance } = useSelector(
     (state: RootState) => state.wallet as WalletState
   );
 
-  const connectWallet = (walletInfo: { address: string; chainId: string }) => {
+  const connectWallet = (walletInfo: WalletState) => {
     dispatch(setWallet(walletInfo));
   };
 
@@ -17,5 +17,5 @@ export const useWallet = () => {
     dispatch(disconnectWallet());
   };
 
-  return { address, chainId, connectWallet, disconnect };
+  return { address, chainId, balance, connectWallet, disconnect };
 };

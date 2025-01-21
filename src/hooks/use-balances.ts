@@ -13,8 +13,15 @@ export const useBalances = (address: string, chainId: string) => {
       setError(null);
 
       try {
-        const details = await getTokenBalances(address, chainId);
-        setBalances(details);
+        const balances = await getTokenBalances(address, chainId);
+
+        balances.forEach((balance, index) => {
+          balances[index].balance =
+            Number(balances[index].balance) /
+            Math.pow(10, balance.decimals ?? 5);
+        });
+
+        setBalances(balances);
       } catch (err) {
         setError((err as Error).message || "Failed to fetch coin details.");
       } finally {

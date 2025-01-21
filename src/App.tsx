@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import reactLogo from './assets/react.svg';
 import { Button } from 'primereact/button';
 import { InputText } from 'primereact/inputtext';
 
@@ -19,7 +18,6 @@ function App() {
           <img src="/vite.svg" className="logo" alt="Vite logo" />
         </a>
         <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
         </a>
       </div>
       <h1>Vite + PrimeReact</h1>

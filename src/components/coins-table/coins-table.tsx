@@ -4,6 +4,7 @@ import { Column } from "primereact/column";
 import { useCoins } from "../../hooks/use-coins";
 import { ProgressSpinner } from "primereact/progressspinner";
 import { Coin } from "../../types/coin";
+import { Link } from "react-router-dom";
 
 const CoinsTable: React.FC = () => {
   const { coins, loading, error } = useCoins();
@@ -19,7 +20,9 @@ const CoinsTable: React.FC = () => {
           src={`https://static.coinpaprika.com/coin/${coin.id}/logo.png`}
           style={{ width: "24px" }}
         />
-        <span>{coin.name}</span>
+        <Link to={`/coin/${coin.id}`}>
+          <span className="text-gray-700 underline">{coin.name}</span>
+        </Link>
       </div>
     );
   };

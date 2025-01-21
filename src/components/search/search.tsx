@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { AutoComplete } from "primereact/autocomplete";
 import { useCoins } from "../../hooks/use-coins";
 import { Coin } from "../../types/coin";
+import { Link } from "react-router-dom";
 
 const Search: React.FC = () => {
   const { coins, loading, error } = useCoins();
@@ -26,17 +27,19 @@ const Search: React.FC = () => {
 
   const itemTemplate = (coin: Coin) => {
     return (
-      <div className="flex align-items-center">
-        <img
-          alt={coin.name}
-          src={`https://static.coinpaprika.com/coin/${coin.id}/logo.png`}
-          className="mr-2"
-          style={{ width: "18px" }}
-        />
-        <div>
-          {coin.name} ({coin.symbol})
+      <Link to={`/coin/${coin.id}`}>
+        <div className="flex align-items-center">
+          <img
+            alt={coin.name}
+            src={`https://static.coinpaprika.com/coin/${coin.id}/logo.png`}
+            className="mr-2"
+            style={{ width: "18px" }}
+          />
+          <div className="text-gray-700">
+            {coin.name} ({coin.symbol})
+          </div>
         </div>
-      </div>
+      </Link>
     );
   };
 

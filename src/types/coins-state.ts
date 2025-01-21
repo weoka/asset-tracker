@@ -4,4 +4,5 @@ export interface CoinsState {
   coins: Coin[];
   loading: boolean;
   error: string | null;
+  isFetching: boolean;
 }

@@ -14,20 +14,19 @@ const Coin: React.FC = () => {
   if (!ticker) return <p>No details available for this coin.</p>;
 
   return (
-    <div className="flex justify-content-between">
-      <div className="bg-white text-gray-700 text-center p-6 pr-8 pl-8 border-round-sm">
+    <div className="bg-white text-gray-700 p-6 border-round-sm">
+      <div className="flex gap-4">
+        <img
+          src={`https://static.coinpaprika.com/coin/${ticker.id}/logo.png`}
+          className="w-5rem"
+        />
         <h2>
           {ticker.name} ({ticker.symbol})
         </h2>
-        <img
-          src={`https://static.coinpaprika.com/coin/${ticker.id}/logo.png`}
-        />
       </div>
 
-      <div className="bg-white text-gray-700 p-6 border-round-sm">
-        <MarketTable ticker={ticker}></MarketTable>
-        <PriceChart id={id ?? "btc-bitcoin"}></PriceChart>
-      </div>
+      <MarketTable ticker={ticker}></MarketTable>
+      <PriceChart id={id ?? "btc-bitcoin"}></PriceChart>
     </div>
   );
 };

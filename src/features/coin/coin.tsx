@@ -1,8 +1,7 @@
 import React from "react";
 import { useParams } from "react-router-dom";
 import { useTicker } from "../../hooks/use-ticker";
-import { DataTable } from "primereact/datatable";
-import { Column } from "primereact/column";
+import MarketTable from "../../components/market-table/market-table";
 
 const Coin: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -25,10 +24,7 @@ const Coin: React.FC = () => {
       </div>
 
       <div className="bg-white text-gray-700 p-6 border-round-sm">
-        <DataTable value={[ticker.quotes["USD"]]}>
-          <Column field="price" header="Price"></Column>
-          <Column field="volume_24h" header="Volume"></Column>
-        </DataTable>
+        <MarketTable ticker={ticker}></MarketTable>
       </div>
     </div>
   );

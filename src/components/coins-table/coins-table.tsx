@@ -13,13 +13,16 @@ const CoinsTable: React.FC = () => {
 
   const coinTemplate = (coin: Coin) => {
     return (
-        <div className="flex align-items-center gap-2">
-            <img alt={coin.name} src={`https://static.coinpaprika.com/coin/${coin.id}/logo.png`} style={{ width: '24px' }} />
-            <span>{coin.name}</span>
-        </div>
+      <div className="flex align-items-center gap-2">
+        <img
+          alt={coin.name}
+          src={`https://static.coinpaprika.com/coin/${coin.id}/logo.png`}
+          style={{ width: "24px" }}
+        />
+        <span>{coin.name}</span>
+      </div>
     );
-};
-
+  };
 
   return (
     <div className="card">

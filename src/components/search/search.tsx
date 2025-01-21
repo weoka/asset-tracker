@@ -1,10 +1,10 @@
 import React, { useState } from "react";
 import { AutoComplete } from "primereact/autocomplete";
-import { UseCoins } from "../../hooks/use-coins";
+import { useCoins } from "../../hooks/use-coins";
 import { Coin } from "../../types/coin";
 
 const Search: React.FC = () => {
-  const { coins, loading, error } = UseCoins();
+  const { coins, loading, error } = useCoins();
   const [filteredCoins, setFilteredCoins] = useState<Coin[] | undefined>(
     undefined
   );

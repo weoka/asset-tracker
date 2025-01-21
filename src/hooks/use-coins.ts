@@ -1,27 +1,20 @@
-import { useState, useEffect } from "react";
-import { getAllCoins } from "../services/coinpaprika-service";
+import { useEffect } from "react";
 import { Coin } from "../types/coin";
+import { RootState, AppDispatch } from "../store";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchCoins } from "../store/slices/coins-slice";
 
-export const UseCoins = () => {
-  const [coins, setCoins] = useState<Coin[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const [error, setError] = useState<string | null>(null);
+export const useCoins = () => {
+  const dispatch = useDispatch<AppDispatch>();
+  const { coins, loading, error } = useSelector(
+    (state: RootState) => state.coins as { coins: Coin[]; loading: boolean; error: string | null }
+  );
 
   useEffect(() => {
-    const fetchCoins = async () => {
-      try {
-        const data = await getAllCoins();
-        setCoins(data);
-      } catch (err) {
-        console.log(err);
-        setError("Failed to load coins");
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchCoins();
-  }, []);
+    if (coins.length === 0) {
+      dispatch(fetchCoins());
+    }
+  }, [coins, dispatch]);
 
   return { coins, loading, error };
 };

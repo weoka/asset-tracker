@@ -17,6 +17,7 @@ function App() {
         <div className="App">
           <Header></Header>
           <CoinsTable></CoinsTable>
+          <p className="text-center mt-5">Data provided by <a href="https://coinpaprika.com" target="_blank">Coinpaprika</a></p>
         </div>
       </PrimeReactProvider>
     </Provider>

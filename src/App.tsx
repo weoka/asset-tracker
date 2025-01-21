@@ -8,6 +8,7 @@ import { store } from "./store";
 import { PrimeReactProvider } from "primereact/api";
 
 import { Header } from "./components/header/header";
+import CoinsTable from "./components/coins-table/coins-table";
 
 function App() {
   return (
@@ -15,6 +16,7 @@ function App() {
       <PrimeReactProvider>
         <div className="App">
           <Header></Header>
+          <CoinsTable></CoinsTable>
         </div>
       </PrimeReactProvider>
     </Provider>

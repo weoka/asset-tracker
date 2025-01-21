@@ -13,8 +13,8 @@ const Coin: React.FC = () => {
   if (!ticker) return <p>No details available for this coin.</p>;
 
   return (
-    <div className="flex gap-5">
-      <div className="bg-white text-gray-700 p-6 border-round-sm">
+    <div className="flex justify-content-between">
+      <div className="bg-white text-gray-700 p-6 pr-8 pl-8 border-round-sm">
         <h2>
           {ticker.name} ({ticker.symbol})
         </h2>

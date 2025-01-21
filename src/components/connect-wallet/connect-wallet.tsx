@@ -4,6 +4,7 @@ import { Button } from "primereact/button";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../store";
 import { setWallet } from "../../store/slices/wallet-slice";
+import { Link } from "react-router-dom";
 
 declare global {
   interface Window {
@@ -59,9 +60,11 @@ const ConnectWallet: React.FC = () => {
   return (
     <div>
       {address ? (
-        <Button
-          label={`${address.substring(0, 6)}...${address.slice(-4)}`}
-        ></Button>
+        <Link to="/my-assets">
+          <Button
+            label={`${address.substring(0, 6)}...${address.slice(-4)}`}
+          ></Button>
+        </Link>
       ) : (
         <Button label="Connect wallet" onClick={connectWallet} />
       )}

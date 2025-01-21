@@ -14,6 +14,7 @@ import Footer from "./components/footer/footer";
 //pages
 import Home from "./features/home/home";
 import Coin from "./features/coin/coin";
+import MyAssets from "./features/my-assets/my-assets";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/coin/:id" element={<Coin />} />
+          <Route path="/my-assets" element={<MyAssets />} />
         </Routes>
         <Footer></Footer>
       </PrimeReactProvider>

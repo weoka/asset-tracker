@@ -17,11 +17,9 @@ function App() {
     <Provider store={store}>
       <PrimeReactProvider>
         <Header></Header>
-        <div className="App">
-          <Routes>
-            <Route path="/" element={<Home />} />
-          </Routes>
-        </div>
+        <Routes>
+          <Route path="/" element={<Home />} />
+        </Routes>
         <Footer></Footer>
       </PrimeReactProvider>
     </Provider>

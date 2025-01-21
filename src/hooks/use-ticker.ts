@@ -1,9 +1,9 @@
 import { useState, useEffect } from "react";
-import { getCoinDetails } from "../services/coinpaprika-service";
-import { CoinDetail } from "../types/coin-detail";
+import { getCoinTicker } from "../services/coinpaprika-service";
+import { Ticker } from "../types/ticker";
 
-export const useCoinDetails = (coinId: string) => {
-  const [coinDetails, setCoinDetails] = useState<CoinDetail | null>(null);
+export const useTicker = (coinId: string) => {
+  const [ticker, setTicker] = useState<Ticker | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -13,8 +13,8 @@ export const useCoinDetails = (coinId: string) => {
       setError(null);
 
       try {
-        const details = await getCoinDetails(coinId);
-        setCoinDetails(details);
+        const details = await getCoinTicker(coinId);
+        setTicker(details);
       } catch (err) {
         setError((err as Error).message || "Failed to fetch coin details.");
       } finally {
@@ -27,5 +27,5 @@ export const useCoinDetails = (coinId: string) => {
     }
   }, [coinId]);
 
-  return { coinDetails, loading, error };
+  return { ticker, loading, error };
 };

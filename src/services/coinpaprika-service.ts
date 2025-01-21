@@ -2,8 +2,8 @@ import { CacheService } from "./cache-service";
 const BASE_URL = "https://api.coinpaprika.com/v1";
 
 import { Coin } from "../types/coin";
-import { CoinDetail } from "../types/coin-detail";
 import { MarketData } from "../types/market-data";
+import { Ticker } from "../types/ticker";
 
 // General API request method
 async function apiRequest<T>(endpoint: string, cacheKey?: string): Promise<T> {
@@ -46,11 +46,8 @@ export const getAllCoins = (): Promise<Coin[]> => {
  * Fetch details of a specific coin.
  * @param coinId The coin ID (e.g., "btc-bitcoin").
  */
-export const getCoinDetails = (coinId: string): Promise<CoinDetail> => {
-  return apiRequest<CoinDetail>(
-    `/coins/${coinId}`,
-    `coinPaprika_coin_${coinId}`
-  );
+export const getCoinTicker = (coinId: string): Promise<Ticker> => {
+  return apiRequest<Ticker>(`/tickers/${coinId}`, `ticker_${coinId}`);
 };
 
 /**

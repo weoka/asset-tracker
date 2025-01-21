@@ -1,4 +1,4 @@
-import { CacheData } from "../types/CacheData";
+import { CacheData } from "../types/cache-data";
 
 const CACHE_EXPIRATION_MS = 24 * 60 * 60 * 1000; // Cache expires in 24 hours
 

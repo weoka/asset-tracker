@@ -1,9 +1,9 @@
 import { CacheService } from "./cache-service";
 const BASE_URL = "https://api.coinpaprika.com/v1";
 
-import { Coin } from "../types/Coin";
-import { CoinDetail } from "../types/CoinDetail";
-import { MarketData } from "../types/MarketData";
+import { Coin } from "../types/coin";
+import { CoinDetail } from "../types/coin-detail";
+import { MarketData } from "../types/market-data";
 
 // General API request method
 async function apiRequest<T>(endpoint: string, cacheKey?: string): Promise<T> {

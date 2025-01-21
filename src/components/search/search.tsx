@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { AutoComplete } from "primereact/autocomplete";
 import { UseCoins } from "../../hooks/use-coins";
-import { Coin } from "../../types/Coin";
+import { Coin } from "../../types/coin";
 
 const Search: React.FC = () => {
   const { coins, loading, error } = UseCoins();

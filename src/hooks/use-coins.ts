@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { getAllCoins } from "../services/coinpaprika-service";
-import { Coin } from "../types/Coin";
+import { Coin } from "../types/coin";
 
 export const UseCoins = () => {
   const [coins, setCoins] = useState<Coin[]>([]);

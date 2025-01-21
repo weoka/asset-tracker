@@ -1,7 +1,7 @@
 import React from "react";
-import { Button } from "primereact/button";
 import Search from "../search/search";
 import { Link } from "react-router";
+import ConnectWallet from "../connect-wallet/connect-wallet";
 
 const Header: React.FC = () => {
   return (
@@ -11,7 +11,7 @@ const Header: React.FC = () => {
       </Link>
       <div className="flex gap-4 h-full">
         <Search></Search>
-        <Button label="Connect wallet" />
+        <ConnectWallet></ConnectWallet>
       </div>
     </div>
   );

@@ -1,5 +1,5 @@
 import { CacheService } from "./cache-service";
-import { TokenInfo } from "../types/token-info";
+import { TokenBalance } from "../types/token-balance";
 
 const BASE_URL = "https://deep-index.moralis.io/api/v2.2";
 const API_KEY =
@@ -45,8 +45,8 @@ async function apiRequest<T>(endpoint: string, cacheKey?: string): Promise<T> {
 export const getTokenBalances = (
   address: string,
   chain: string
-): Promise<TokenInfo[]> => {
-  return apiRequest<TokenInfo[]>(
+): Promise<TokenBalance[]> => {
+  return apiRequest<TokenBalance[]>(
     `/${address}/erc20?chain=${chain}`,
     `${chain}_${address}_token_balances`
   );

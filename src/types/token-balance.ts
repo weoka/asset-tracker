@@ -1,4 +1,4 @@
-export interface TokenInfo {
+export interface TokenBalance {
   token_address: string;
   name: string;
   symbol: string;

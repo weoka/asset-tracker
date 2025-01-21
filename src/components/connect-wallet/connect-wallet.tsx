@@ -1,6 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { ethers } from "ethers";
 import { Button } from "primereact/button";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
+import { setWallet } from "../../store/slices/wallet-slice";
 
 declare global {
   interface Window {
@@ -9,14 +12,22 @@ declare global {
 }
 
 const ConnectWallet: React.FC = () => {
-  const [account, setAccount] = useState<string | null>(null);
+  const dispatch = useDispatch();
+  const { address } = useSelector((state: RootState) => state.wallet);
 
   const connectWallet = async () => {
     if (window.ethereum) {
       try {
         const provider = new ethers.BrowserProvider(window.ethereum);
         const accounts = await provider.send("eth_requestAccounts", []);
-        setAccount(accounts[0]);
+        const network = await provider.getNetwork();
+
+        dispatch(
+          setWallet({
+            address: accounts[0],
+            chainId: network.chainId.toString(),
+          })
+        );
       } catch (error) {
         console.error("Error connecting wallet:", error);
       }
@@ -27,9 +38,9 @@ const ConnectWallet: React.FC = () => {
 
   return (
     <div>
-      {account ? (
+      {address ? (
         <Button
-          label={`${account.substring(0, 6)}...${account.slice(-4)}`}
+          label={`${address.substring(0, 6)}...${address.slice(-4)}`}
         ></Button>
       ) : (
         <Button label="Connect wallet" onClick={connectWallet} />

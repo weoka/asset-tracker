@@ -1,8 +1,8 @@
-
+import React from 'react';
 import { Button } from 'primereact/button';
 import Search from '../search/search';
         
-function Header() {
+const Header: React.FC = () => {
     return (
         <div className="header flex justify-content-between align-items-center">
             <h1>Asset Tracker</h1>
@@ -14,4 +14,4 @@ function Header() {
     )
 }
 
-export {Header};
+export default Header;

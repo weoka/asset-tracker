@@ -6,19 +6,23 @@ import "primeflex/primeflex.css"; // flex
 import { Provider } from "react-redux";
 import { store } from "./store";
 import { PrimeReactProvider } from "primereact/api";
+import { Routes, Route } from "react-router-dom";
 
-import { Header } from "./components/header/header";
-import CoinsTable from "./components/coins-table/coins-table";
+import Home from "./features/home/home";
+import Header from "./components/header/header";
+import Footer from "./components/footer/footer";
 
 function App() {
   return (
     <Provider store={store}>
       <PrimeReactProvider>
+        <Header></Header>
         <div className="App">
-          <Header></Header>
-          <CoinsTable></CoinsTable>
-          <p className="text-center mt-5">Data provided by <a href="https://coinpaprika.com" target="_blank">Coinpaprika</a></p>
+          <Routes>
+            <Route path="/" element={<Home />} />
+          </Routes>
         </div>
+        <Footer></Footer>
       </PrimeReactProvider>
     </Provider>
   );

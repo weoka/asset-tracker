@@ -6,12 +6,13 @@ import { CoinDetail } from "../types/CoinDetail";
 import { MarketData } from "../types/MarketData";
 
 // General API request method
-async function apiRequest<T>(endpoint: string, cacheKey: string): Promise<T> {
-  // Check the cache first
-  const cachedData = CacheService.getItem<T>(cacheKey);
-  if (cachedData) {
-    console.log(`Returning cached data for ${endpoint}`);
-    return cachedData;
+async function apiRequest<T>(endpoint: string, cacheKey?: string): Promise<T> {
+  if (cacheKey) {
+    const cachedData = CacheService.getItem<T>(cacheKey);
+    if (cachedData) {
+      console.log(`Returning cached data for ${endpoint}`);
+      return cachedData;
+    }
   }
 
   try {
@@ -21,8 +22,9 @@ async function apiRequest<T>(endpoint: string, cacheKey: string): Promise<T> {
 
     const data: T = await response.json();
 
-    // Store in cache
-    CacheService.setItem(cacheKey, data);
+    if (cacheKey) {
+      CacheService.setItem(cacheKey, data);
+    }
 
     return data;
   } catch (error) {
@@ -37,7 +39,7 @@ async function apiRequest<T>(endpoint: string, cacheKey: string): Promise<T> {
  * Fetch all available coins.
  */
 export const getAllCoins = (): Promise<Coin[]> => {
-  return apiRequest<Coin[]>("/coins", "coinPaprika_coins");
+  return apiRequest<Coin[]>("/coins");
 };
 
 /**
@@ -45,7 +47,10 @@ export const getAllCoins = (): Promise<Coin[]> => {
  * @param coinId The coin ID (e.g., "btc-bitcoin").
  */
 export const getCoinDetails = (coinId: string): Promise<CoinDetail> => {
-  return apiRequest<CoinDetail>(`/coins/${coinId}`, `coinPaprika_coin_${coinId}`);
+  return apiRequest<CoinDetail>(
+    `/coins/${coinId}`,
+    `coinPaprika_coin_${coinId}`
+  );
 };
 
 /**
@@ -53,5 +58,8 @@ export const getCoinDetails = (coinId: string): Promise<CoinDetail> => {
  * @param coinId The coin ID.
  */
 export const getCoinMarketData = (coinId: string): Promise<MarketData> => {
-  return apiRequest<MarketData>(`/tickers/${coinId}`, `coinPaprika_market_${coinId}`);
+  return apiRequest<MarketData>(
+    `/tickers/${coinId}`,
+    `coinPaprika_market_${coinId}`
+  );
 };

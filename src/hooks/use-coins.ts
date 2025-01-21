@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { getAllCoins } from "../services/coinpaprika-service";
 import { Coin } from "../types/Coin";
 
-export const useCoins = () => {
+export const UseCoins = () => {
   const [coins, setCoins] = useState<Coin[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);

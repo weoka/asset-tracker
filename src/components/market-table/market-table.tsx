@@ -67,15 +67,18 @@ const MarketTable: React.FC<{ ticker: Ticker }> = ({ ticker }) => {
   };
 
   return (
-    <DataTable value={[ticker.quotes["USD"]]}>
-      <Column header="Price" body={priceTemplate}></Column>
-      <Column header="Market cap" body={marketcapTemplate}></Column>
-      <Column header="Volume" body={volumeTemplate}></Column>
-      <Column header="Price change 24h" body={change24h}></Column>
-      <Column header="Price change 7d" body={change7d}></Column>
-      <Column header="Price change 30d" body={change30d}></Column>
-      <Column header="Price change 1 year" body={change1y}></Column>
-    </DataTable>
+    <>
+      <h2>Market Data</h2>
+      <DataTable value={[ticker.quotes["USD"]]}>
+        <Column header="Price" body={priceTemplate}></Column>
+        <Column header="Market cap" body={marketcapTemplate}></Column>
+        <Column header="Volume" body={volumeTemplate}></Column>
+        <Column header="Price change 24h" body={change24h}></Column>
+        <Column header="Price change 7d" body={change7d}></Column>
+        <Column header="Price change 30d" body={change30d}></Column>
+        <Column header="Price change 1 year" body={change1y}></Column>
+      </DataTable>
+    </>
   );
 };
 

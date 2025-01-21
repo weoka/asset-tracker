@@ -11,12 +11,15 @@
     "test": "jest"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
+    "axios": "^1.7.9",
     "jest-environment-jsdom": "^29.7.0",
     "primeflex": "^3.3.1",
     "primeicons": "^7.0.0",
     "primereact": "^10.9.1",
     "react": "^18.3.1",
-    "react-dom": "^18.3.1"
+    "react-dom": "^18.3.1",
+    "react-redux": "^9.2.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",

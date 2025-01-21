@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { ethers } from "ethers";
 import { Button } from "primereact/button";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,7 +7,8 @@ import { setWallet } from "../../store/slices/wallet-slice";
 
 declare global {
   interface Window {
-    ethereum?: "";
+    /* eslint-disable @typescript-eslint/no-explicit-any */
+    ethereum?: any;
   }
 }
 
@@ -35,6 +36,25 @@ const ConnectWallet: React.FC = () => {
       alert("MetaMask not detected. Please install it.");
     }
   };
+
+  useEffect(() => {
+    if (window.ethereum) {
+      const handleChainChanged = (chainId: string) => {
+        dispatch(
+          setWallet({
+            address: address || "",
+            chainId: parseInt(chainId, 16).toString(),
+          })
+        );
+      };
+
+      window.ethereum.on("chainChanged", handleChainChanged);
+
+      return () => {
+        window.ethereum.removeListener("chainChanged", handleChainChanged);
+      };
+    }
+  }, [dispatch, address]);
 
   return (
     <div>

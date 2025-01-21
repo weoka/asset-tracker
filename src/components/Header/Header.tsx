@@ -6,8 +6,8 @@ function Header() {
     return (
         <div className="header flex justify-content-between align-items-center">
             <h1>Asset Tracker</h1>
-            <Search></Search>
-            <div className="h-full">
+            <div className="flex gap-4 h-full">
+                <Search></Search>
                 <Button label="Connect wallet" />
             </div>
         </div>

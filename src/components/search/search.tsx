@@ -52,6 +52,7 @@ const Search: React.FC = () => {
         completeMethod={search}
         onChange={(e) => setSelectedCoin(e.value)}
         itemTemplate={itemTemplate}
+        placeholder="Search coin..."
       />
     </div>
   );

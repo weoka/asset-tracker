@@ -64,8 +64,8 @@ export const getCoinTicker = (coinId: string): Promise<Ticker> => {
 export const getCoinChart = (
   coinId: string,
   period: "1d" | "7d" | "30d" | "1y" = "1y"
-): Promise<ChartData> => {
-  return apiRequest<ChartData>(
+): Promise<ChartData[]> => {
+  return apiRequest<ChartData[]>(
     `/currency/data/${coinId}/${period}/?quote=usd`,
     `chart_${period}_${coinId}`,
     true

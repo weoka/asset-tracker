@@ -2,6 +2,7 @@ import React from "react";
 import { useParams } from "react-router-dom";
 import { useTicker } from "../../hooks/use-ticker";
 import MarketTable from "../../components/market-table/market-table";
+import PriceChart from "../../components/price-chart/price-chart";
 
 const Coin: React.FC = () => {
   const { id } = useParams<{ id: string }>();
@@ -25,6 +26,7 @@ const Coin: React.FC = () => {
 
       <div className="bg-white text-gray-700 p-6 border-round-sm">
         <MarketTable ticker={ticker}></MarketTable>
+        <PriceChart id={id ?? "btc-bitcoin"}></PriceChart>
       </div>
     </div>
   );

@@ -1,15 +1,15 @@
 # Asset Tracker
 
-The features that were implementated on this project are:
+The features that were implemented on this project are:
 
 - Crypto data
 - Market charts
 - Metamask connection to see account's balance
-- Saving data on cache to save up API requests
+- Saving data in cache to save up API requests
 
 ## Folder structure
 
-The project was structurated using a clean architecture pattern:
+The project was structured using a clean architecture pattern:
 
 ```
 ├── 📂 src
@@ -35,9 +35,9 @@ The project was structurated using a clean architecture pattern:
 - Jest 6
 - Ethers.js
 - React Router
-- Prime Reacgt
-- Prime Flex (as an equivalent to Tailwindcss)
-- Tradingview Lightweight charts
+- PrimeReact
+- Prime Flex (as an equivalent to Tailwind CSS)
+- TradingView Lightweight charts
 - Yarn
 
 ## How to run

@@ -2,6 +2,13 @@ import { CacheService } from "./cache-service";
 import { TokenBalance } from "../types/token-balance";
 
 const BASE_URL = "https://deep-index.moralis.io/api/v2.2";
+
+/* 
+I understand that exposing API keys is generally not considered a good practice. 
+However, Moralis was the only provider that met the requirements for this project.
+Using a .env file would complicate the structure unnecessarily and setup for testing.
+*/
+
 const API_KEY =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJub25jZSI6IjRjZjE3NGFkLTY5YWMtNGE1YS05ZDg0LTQ2NjdkOTJmYTc0MSIsIm9yZ0lkIjoiNDI2OTE2IiwidXNlcklkIjoiNDM5MTIwIiwidHlwZUlkIjoiOTgyOTFlY2EtNTJjNC00YTFiLWFmMTUtYWY0OGQzN2JkYWY4IiwidHlwZSI6IlBST0pFQ1QiLCJpYXQiOjE3Mzc0OTM4MjgsImV4cCI6NDg5MzI1MzgyOH0.vb-sntDKH2GWQ1H21dXTYu2Zz18FzmQJvf02usDsrA0";
 

@@ -4,11 +4,6 @@ import { useCoins } from "../../hooks/use-coins";
 import { BrowserRouter } from "react-router-dom";
 import "@testing-library/jest-dom";
 
-import { TextEncoder, TextDecoder } from "text-encoding";
-
-global.TextEncoder = TextEncoder;
-global.TextDecoder = TextDecoder;
-
 // Mock the `useCoins` hook
 jest.mock("../../hooks/use-coins");
 

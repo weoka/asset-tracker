@@ -1,20 +1,31 @@
-export default {
-    preset: 'ts-jest',
-    testEnvironment: 'jest-environment-jsdom',
-    transform: {
-      "^.+\\.(ts|tsx|js|jsx)$": "ts-jest"
-    },
-    moduleNameMapper: {
-      // 🔹 Mockear archivos CSS para que Jest los ignore
-      "\\.(css|less|scss|sass)$": "identity-obj-proxy",
-      "\\.(gif|ttf|eot|svg|png)$": "<rootDir>/test/__mocks__/fileMock.js",
-    },
-    transformIgnorePatterns: ["node_modules/(?!primereact)"], // Evitar ignorar Primereact
-    extensionsToTreatAsEsm: [".ts", ".tsx"],
-    globals: {
-      "ts-jest": {
-        useESM: true
-      }
-    }
-  };
-  
+// jest.config.ts
+
+import type { Config } from "@jest/types";
+
+const config: Config.InitialOptions = {
+  preset: "ts-jest",
+  testEnvironment: "jsdom",
+
+  // Path to the setup file
+  setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
+
+  // Module name mapping for styles and assets
+  moduleNameMapper: {
+    "\\.(css|less|sass|scss)$": "identity-obj-proxy",
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
+
+  // Transform settings for different file types
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest",
+    "^.+\\.(js|jsx)$": "babel-jest", // If using Babel
+  },
+
+  // File extensions Jest should handle
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+
+  // Coverage collection settings
+  collectCoverageFrom: ["src/**/*.{ts,tsx,js,jsx}", "!src/**/*.d.ts"],
+};
+
+export default config;
